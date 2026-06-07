@@ -1,0 +1,52 @@
+---
+interface Props {
+  size?: number;
+}
+
+const { size = 14 } = Astro.props;
+---
+
+<div class="socials">
+  <a href="https://github.com/ItzCopiouz" class="social" title="GitHub">
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 0a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.05c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.21.08 1.85 1.24 1.85 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.66-.3-5.46-1.33-5.46-5.93 0-1.31.47-2.38 1.24-3.22-.13-.31-.54-1.52.11-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.66.25 2.87.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.62-2.81 5.62-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.83.58A12 12 0 0 0 12 0z"/>
+    </svg>
+  </a>
+  <a href="https://www.linkedin.com/in/samuel-mcclanahan-1054b7334/" class="social" title="LinkedIn">
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M19 0H5a5 5 0 0 0-5 5v14a5 5 0 0 0 5 5h14a5 5 0 0 0 5-5V5a5 5 0 0 0-5-5zM8 19H5V8h3v11zM6.5 6.7a1.8 1.8 0 1 1 0-3.6 1.8 1.8 0 0 1 0 3.6zM20 19h-3v-5.6c0-1.4-.5-2.4-1.7-2.4-1 0-1.5.6-1.8 1.3-.1.2-.1.5-.1.8V19h-3V8h3v1.3c.4-.6 1.1-1.5 2.7-1.5 2 0 3.5 1.3 3.5 4.1V19z"/>
+    </svg>
+  </a>
+  <a href="mailto:porkbuns1964@gmail.com" class="social" title="Email">
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <rect x="2" y="4" width="20" height="16" rx="2"/>
+      <path d="m2 7 10 7 10-7"/>
+    </svg>
+  </a>
+  <a href="#" class="social" title="Discord">
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.4a14 14 0 0 0-6.4 0L8.6 3a19.8 19.8 0 0 0-4.9 1.4A20.6 20.6 0 0 0 .3 17.7a20 20 0 0 0 6 3l1.2-1.7a13 13 0 0 1-2-1l.5-.4a14.2 14.2 0 0 0 12 0l.5.4a13 13 0 0 1-2 1l1.2 1.7a20 20 0 0 0 6-3 20.6 20.6 0 0 0-3.4-13.3zM8 14.4c-1.2 0-2.1-1-2.1-2.4s.9-2.4 2-2.4c1.3 0 2.2 1 2.2 2.4 0 1.3-1 2.4-2.2 2.4zm8 0c-1.2 0-2.1-1-2.1-2.4s.9-2.4 2.1-2.4c1.2 0 2.2 1 2.1 2.4 0 1.3-.9 2.4-2.1 2.4z"/>
+    </svg>
+  </a>
+  <a href="#" class="social" title="RSS">
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M4 11a9 9 0 0 1 9 9h-3a6 6 0 0 0-6-6v-3zm0-7a16 16 0 0 1 16 16h-3A13 13 0 0 0 4 7V4zm2.5 13a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5z"/>
+    </svg>
+  </a>
+</div>
+
+<style>
+  .socials {
+    display: flex;
+    gap: 14px;
+  }
+  .social {
+    color: var(--fg-faint);
+    display: flex;
+    transition: color .15s;
+    text-decoration: none;
+  }
+  .social:hover {
+    color: var(--accent-bright);
+  }
+</style>

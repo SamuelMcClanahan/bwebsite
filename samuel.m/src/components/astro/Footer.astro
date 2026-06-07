@@ -1,0 +1,61 @@
+---
+import SocialIcons from './SocialIcons.astro';
+---
+
+<footer class="footer">
+  <div class="gradient-bar"></div>
+  <div class="footer-mountains">
+    <img src="/footer-mountains.svg" alt="" aria-hidden="true" />
+  </div>
+  <div class="footer-inner">
+    <SocialIcons />
+    <div class="copy">
+      <span>© 2026 samuel m</span>
+      <span class="copy-sep">·</span>
+      <span>built with astro</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    position: relative;
+    z-index: 1;
+  }
+  .gradient-bar {
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--accent) 50%, transparent 100%);
+    opacity: 0.5;
+    margin-bottom: 24px;
+  }
+  .footer-mountains {
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 24px;
+    opacity: 0.6;
+  }
+  .footer-mountains img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24px 24px;
+    max-width: 920px;
+    margin: 0 auto;
+  }
+  .copy {
+    font-size: 11px;
+    color: var(--fg-faint);
+    font-family: "0xProto Nerd Font Mono", "0xProto", monospace;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .copy-sep {
+    color: var(--fg-ghost);
+  }
+</style>

@@ -1,0 +1,66 @@
+---
+interface Props {
+  title?: string;
+  breadcrumb?: string;
+  page?: string;
+}
+
+const { title = 'samuel.m', breadcrumb = '~/', page = 'home' } = Astro.props;
+
+import TopBar from '../components/react/TopBar.tsx';
+import ZshPalette from '../components/react/ZshPalette.tsx';
+import BackgroundBlooms from '../components/astro/BackgroundBlooms.astro';
+import Breadcrumb from '../components/astro/Breadcrumb.astro';
+import Footer from '../components/astro/Footer.astro';
+import '../styles/global.css';
+import '../styles/animations.css';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=0xProto:wght@400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous" />
+    <script is:inline>
+      (function() {
+        const key = 'slm-theme';
+        const theme = localStorage.getItem(key) || 'dark';
+        if (theme === 'light') document.body.classList.add('light');
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="shell">
+      <BackgroundBlooms />
+      <TopBar page={page} client:load />
+      <Breadcrumb path={breadcrumb} />
+      <ZshPalette breadcrumb={breadcrumb} client:load />
+      <main class="main-content">
+        <slot />
+      </main>
+      <Footer />
+    </div>
+
+    <style is:global>
+      .shell {
+        position: relative;
+        min-height: 100vh;
+        width: 100%;
+        overflow: hidden;
+        isolation: isolate;
+      }
+      .main-content {
+        position: relative;
+        z-index: 1;
+        padding: 16px 24px 40px;
+      }
+    </style>
+  </body>
+</html>

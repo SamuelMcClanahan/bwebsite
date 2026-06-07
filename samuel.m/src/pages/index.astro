@@ -1,0 +1,195 @@
+---
+import Shell from '../layouts/Shell.astro';
+import { getCollection } from 'astro:content';
+
+const latestWork = (await getCollection('work'))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 1);
+
+const latestProject = (await getCollection('projects'))
+  .sort((a, b) => b.data.year.localeCompare(a.data.year) || a.id.localeCompare(b.id))
+  .slice(0, 1);
+---
+
+<Shell title="samuel.m" breadcrumb="~/" page="home">
+  <div class="home-wrapper">
+    <section class="hero">
+      <div class="mark-row">
+        <span class="mark">slm</span>
+        <div class="mark-meta">
+          <span class="mark-name">Samuel L. McClanahan</span>
+          <span class="mark-loc">San Francisco, CA</span>
+        </div>
+      </div>
+      <h1 class="h1"><span class="gradient">hello</span></h1>
+      <div class="body-block">
+        <span class="body-prompt">›</span>
+        <p class="body-text">
+          I'm a high school junior in San Francisco passionate about AI, cybersecurity, robotics, and hardware. Currently I'm working on making a scalable and low cost plane and drone detection system.<br><br>
+          Want to talk about anything? Reach out at porkbuns1964[at]gmail[dot]com
+        </p>
+      </div>
+    </section>
+
+    <section class="posts">
+      <div class="posts-head">
+        <span class="posts-cmd">$ ls -lt ~/work ~/projects | head -2</span>
+      </div>
+      <div class="post-list">
+        {latestWork.map((p) => (
+          <a href={`/work/${p.id.replace(/\.md$/, '')}/`} class="post-row">
+            <span class="post-date">{p.data.date.toISOString().split('T')[0]}</span>
+            <span class="post-title">{p.data.title}</span>
+            <span class="post-tags">
+              {p.data.tags.slice(0, 2).map((t) => <span class="tag">{t}</span>)}
+            </span>
+          </a>
+        ))}
+        {latestProject.map((p) => (
+          <a href={`/projects/${p.id.replace(/\.md$/, '')}/`} class="post-row">
+            <span class="post-date">{p.data.year}</span>
+            <span class="post-title">{p.data.name}</span>
+            <span class="post-tags">
+              <span class="tag">{p.data.tag}</span>
+            </span>
+          </a>
+        ))}
+      </div>
+    </section>
+  </div>
+
+  <style is:global>
+    .home-wrapper {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 48px 20px 40px;
+    }
+    .hero { margin-bottom: 48px; }
+    .mark-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
+      background: linear-gradient(135deg, #2a1614 0%, #160c0a 100%);
+      border: 1px solid var(--accent-line-strong);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Montserrat", sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      font-style: italic;
+      color: var(--accent-bright);
+    }
+    .mark-meta { display: flex; flex-direction: column; gap: 2px; }
+    .mark-name { font-size: 13px; color: var(--fg-strong); letter-spacing: -0.01em; }
+    .mark-loc { font-size: 11px; color: var(--fg-faint); font-family: "0xProto Nerd Font Mono", "0xProto", monospace; }
+    .h1 {
+      font-family: "Montserrat", sans-serif;
+      font-size: 52px;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+      color: var(--fg-strong);
+      margin: 0 0 24px;
+      text-wrap: balance;
+    }
+    .gradient {
+      background: linear-gradient(110deg, #e8a59f 0%, #c8413a 40%, #7a2520 80%, #4a1a18 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .body-block {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      max-width: 600px;
+    }
+    .body-prompt {
+      color: var(--accent);
+      font-family: "0xProto Nerd Font Mono", "0xProto", monospace;
+      font-size: 16px;
+      line-height: 1.55;
+      margin-top: 1px;
+      flex-shrink: 0;
+    }
+    .body-text {
+      font-size: 15.5px;
+      line-height: 1.7;
+      color: var(--fg-mid);
+      margin: 0;
+      text-wrap: pretty;
+    }
+    .posts { margin-bottom: 24px; }
+    .posts:last-child { margin-bottom: 0; }
+    .posts-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--accent-line);
+    }
+    .posts-cmd {
+      font-family: "0xProto Nerd Font Mono", "0xProto", monospace;
+      font-size: 12px;
+      color: var(--fg-mid);
+    }
+    .posts-all {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-family: "0xProto Nerd Font Mono", "0xProto", monospace;
+      font-size: 11px;
+      color: var(--accent-dim);
+      text-decoration: none;
+      transition: color .12s;
+    }
+    .posts-all:hover { color: var(--accent-bright); }
+    .post-list { display: flex; flex-direction: column; }
+    .post-row {
+      display: grid;
+      grid-template-columns: 90px 1fr auto;
+      gap: 16px;
+      padding: 12px 0;
+      align-items: baseline;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--accent-line);
+      cursor: pointer;
+      text-align: left;
+      width: 100%;
+      text-decoration: none;
+      transition: background .12s;
+    }
+    .post-row:hover { background: var(--accent-soft); }
+    .post-date {
+      font-size: 11px;
+      color: var(--fg-faint);
+      font-family: "0xProto Nerd Font Mono", "0xProto", monospace;
+    }
+    .post-title {
+      font-size: 15px;
+      color: var(--fg-strong);
+      letter-spacing: -0.005em;
+      font-family: "Avenir Next", Avenir, "Montserrat", sans-serif;
+    }
+    .post-tags { display: flex; gap: 8px; }
+    .tag {
+      font-size: 10px;
+      color: var(--accent-dim);
+      font-family: "0xProto Nerd Font Mono", "0xProto", monospace;
+    }
+    @media (max-width: 640px) {
+      .home-wrapper { padding: 32px 16px 24px; }
+      .h1 { font-size: 42px; }
+      .post-row { grid-template-columns: 70px 1fr auto; gap: 10px; padding: 10px 0; }
+    }
+  </style>
+</Shell>

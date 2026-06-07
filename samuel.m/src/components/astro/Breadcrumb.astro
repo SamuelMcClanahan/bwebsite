@@ -1,0 +1,39 @@
+---
+interface Props {
+  path: string;
+}
+
+const { path } = Astro.props;
+---
+
+<div class="breadcrumb">
+  <span class="user">samuel</span>
+  <span class="at">@</span>
+  <span class="host">build</span>
+  <span class="colon">:</span>
+  <span class="path">{path}</span>
+  <span class="dollar">$</span>
+  <span class="cursor">_</span>
+</div>
+
+<style>
+  .breadcrumb {
+    padding: 14px 24px 12px;
+    font-family: "0xProto Nerd Font Mono", "0xProto", monospace;
+    font-size: 12px;
+    background: transparent;
+    position: relative;
+    z-index: 1;
+  }
+  .user { color: var(--green); }
+  .at { color: var(--fg-faint); }
+  .host { color: var(--host); }
+  .colon { color: var(--fg-faint); }
+  .path { color: var(--fg-mid); }
+  .dollar { color: var(--accent); margin-left: 4px; }
+  .cursor {
+    color: var(--accent);
+    animation: blink 1.2s steps(2) infinite;
+    margin-left: 4px;
+  }
+</style>

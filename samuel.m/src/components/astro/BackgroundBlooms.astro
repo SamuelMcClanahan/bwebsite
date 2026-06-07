@@ -1,0 +1,36 @@
+<div class="blooms">
+  <div class="bloom bloom-top"></div>
+  <div class="bloom bloom-right"></div>
+  <div class="bloom bloom-bottom"></div>
+</div>
+
+<style>
+  .blooms {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .bloom {
+    position: absolute;
+    border-radius: 50%;
+  }
+  .bloom-top {
+    top: -15%; right: -10%;
+    width: 70%; height: 60%;
+    background: radial-gradient(circle at center, var(--wash-1) 0%, transparent 70%);
+    filter: blur(40px);
+  }
+  .bloom-right {
+    top: 30%; right: -20%;
+    width: 50%; height: 50%;
+    background: radial-gradient(circle at center, var(--wash-2) 0%, transparent 70%);
+    filter: blur(50px);
+  }
+  .bloom-bottom {
+    top: 55%; left: -15%;
+    width: 60%; height: 55%;
+    background: radial-gradient(circle at center, var(--wash-3) 0%, transparent 70%);
+    filter: blur(40px);
+  }
+</style>

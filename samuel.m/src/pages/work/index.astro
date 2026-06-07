@@ -1,0 +1,77 @@
+---
+import Shell from '../../layouts/Shell.astro';
+import BlogFilter from '../../components/react/BlogFilter.tsx';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('work');
+const postData = posts.map((p) => ({
+  slug: p.id.replace(/\.md$/, ''),
+  date: p.data.date.toISOString().split('T')[0],
+  title: p.data.title,
+  tags: p.data.tags,
+  category: p.data.category,
+  excerpt: p.data.excerpt,
+}));
+---
+
+<Shell title="work · samuel.m" breadcrumb="~/work" page="work">
+  <div class="work-wrapper">
+    <header class="work-header">
+      <h1 class="work-h1">work</h1>
+      <p class="work-lede">
+        <span class="work-prompt">›</span>
+        <span>stuff I've done</span>
+      </p>
+    </header>
+
+    <BlogFilter posts={postData} client:load />
+  </div>
+
+  <style is:global>
+    .work-wrapper {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 32px 20px 40px;
+    }
+    .work-header { margin-bottom: 48px; }
+    .work-h1 {
+      font-family: "Montserrat", sans-serif;
+      font-size: 52px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--fg-strong);
+      margin: 0 0 12px;
+      line-height: 1;
+    }
+    .work-lede {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 14.5px;
+      line-height: 1.55;
+      color: var(--fg-dim);
+      margin: 0;
+      max-width: 600px;
+      text-wrap: pretty;
+    }
+    .work-prompt {
+      color: var(--accent);
+      font-family: "0xProto Nerd Font Mono", "0xProto", monospace;
+      font-size: 14px;
+      margin-top: 1px;
+      flex-shrink: 0;
+    }
+    .work-lede code {
+      font-family: "0xProto Nerd Font Mono", "0xProto", monospace;
+      font-size: 12px;
+      background: var(--accent-line);
+      padding: 1px 6px;
+      border-radius: 3px;
+      color: var(--accent-bright);
+    }
+    @media (max-width: 640px) {
+      .work-wrapper { padding: 32px 16px 24px; }
+      .work-h1 { font-size: 42px; }
+    }
+  </style>
+</Shell>

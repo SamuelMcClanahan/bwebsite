@@ -1,0 +1,371 @@
+---
+import Shell from '../layouts/Shell.astro';
+---
+
+<Shell title="cv · samuel.m" breadcrumb="~/cv" page="cv">
+  <div class="cv-wrapper">
+    <header class="cv-header">
+      <h1 class="cv-h1">cv</h1>
+      <p class="cv-lede">
+        <span class="cv-prompt">›</span>
+        <span>resume</span>
+      </p>
+    </header>
+
+    <div class="cv-actions">
+      <a href="/cv.pdf" class="cv-dl-btn" download>
+        <span>↓ download cv.pdf</span>
+        <span class="cv-size">183 kb</span>
+      </a>
+      <a href="/cv.pdf" target="_blank" class="cv-open-link">open in tab ↗</a>
+    </div>
+
+    <div class="cv-preview">
+      <div class="cv-preview-head">
+        <div class="cv-preview-dots">
+          <span class="dot" /><span class="dot" /><span class="dot" />
+        </div>
+        <span class="cv-preview-name">cv.pdf — preview</span>
+      </div>
+      <div class="cv-preview-body">
+        <h2 class="cv-h2">Samuel L. McClanahan</h2>
+        <p class="cv-sub">san francisco, ca · 415-529-0294 · porkbuns1964@gmail.com · github.com/ItzCopiouz</p>
+
+        <section class="cv-section">
+          <h3 class="cv-h3">EDUCATION</h3>
+          <div class="cv-list">
+            <div class="cv-row">
+              <div class="cv-row-main">
+                <div class="cv-primary">Lowell High School</div>
+                <div class="cv-secondary">GPA: 3.86 UW · 1480 PSAT · AP Physics 1 & 2, AP Calculus BC, Multivariable Calculus (West Valley College)</div>
+              </div>
+              <div class="cv-right">expected '27</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="cv-section">
+          <h3 class="cv-h3">PROFESSIONAL EXPERIENCE</h3>
+          <div class="cv-list">
+            <div class="cv-row">
+              <div class="cv-row-main">
+                <div class="cv-primary">DoseNet Radwatch, UC Berkeley — Engineering Intern</div>
+                <div class="cv-secondary">Designed custom 3D-printed enclosures for air-quality and radiation monitoring systems using SolidWorks.</div>
+              </div>
+              <div class="cv-right">Summer 2023–24</div>
+            </div>
+            <div class="cv-row">
+              <div class="cv-row-main">
+                <div class="cv-primary">YuppAI — Intern</div>
+                <div class="cv-secondary">GTM and market analyses; built a Discord bot for an a16z-backed AI startup; supported operations and logistics.</div>
+              </div>
+              <div class="cv-right">Summer 2024–25</div>
+            </div>
+            <div class="cv-row">
+              <div class="cv-row-main">
+                <div class="cv-primary">Math & SAT Tutor</div>
+                <div class="cv-secondary">Individual math and SAT/PSAT 10/9 tutoring for middle and high school students.</div>
+              </div>
+              <div class="cv-right">2024 —</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="cv-section">
+          <h3 class="cv-h3">PROJECTS</h3>
+          <div class="cv-list">
+            <div class="cv-row">
+              <div class="cv-row-main">
+                <div class="cv-primary">RAG-Based Cisco Semantic Search API</div>
+                <div class="cv-secondary">Python/FastAPI + local embeddings for natural-language search across 900+ Cisco CLI commands. Deployed on OpenWebUI.</div>
+              </div>
+              <div class="cv-right">2025</div>
+            </div>
+            <div class="cv-row">
+              <div class="cv-row-main">
+                <div class="cv-primary">ESP32-CAM Portable Vision Device</div>
+                <div class="cv-secondary">Firmware in C, custom 3D-printed enclosure, hand-soldered wiring. Streams to Python backend for LLM vision + SMS alerts.</div>
+              </div>
+              <div class="cv-right">2025</div>
+            </div>
+            <div class="cv-row">
+              <div class="cv-row-main">
+                <div class="cv-primary">Self-Hosted Ubuntu SBC Server</div>
+                <div class="cv-secondary">AdGuard DNS filtering, NAS storage, multiple local AI inference backends (Ollama, OpenWebUI).</div>
+              </div>
+              <div class="cv-right">2025</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="cv-section">
+          <h3 class="cv-h3">ROBOTICS</h3>
+          <div class="cv-list">
+            <div class="cv-row">
+              <div class="cv-row-main">
+                <div class="cv-primary">Captain — Highlander Robotics (FRC)</div>
+                <div class="cv-secondary">Top ~50 worldwide. Lead mechanical design of 150-lb competition robots in PTC Onshape; manage ~$100k budget and full-team integration.</div>
+              </div>
+              <div class="cv-right">2024 —</div>
+            </div>
+            <div class="cv-row">
+              <div class="cv-row-main">
+                <div class="cv-primary">Mentor — FRC Team 10221</div>
+                <div class="cv-secondary">Teach CAD, mechanical design, and electrical fundamentals; support design reviews and build cycles.</div>
+              </div>
+              <div class="cv-right">2024–26</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="cv-section">
+          <h3 class="cv-h3">CYBERSECURITY</h3>
+          <div class="cv-list">
+            <div class="cv-row">
+              <div class="cv-row-main">
+                <div class="cv-primary">Co-Founder — AFA CyberPatriot Team</div>
+                <div class="cv-secondary">Ranked 3/4787 nationally. Cisco Packet Tracer, network hardening, agentic search tooling.</div>
+              </div>
+              <div class="cv-right">2025–26</div>
+            </div>
+            <div class="cv-row">
+              <div class="cv-row-main">
+                <div class="cv-primary">SuperDiceCodeLovers — DEF CON CTF</div>
+                <div class="cv-secondary">1st overall in qualifiers; highest LiveCTF score on team.</div>
+              </div>
+              <div class="cv-right">2026</div>
+            </div>
+            <div class="cv-row">
+              <div class="cv-row-main">
+                <div class="cv-primary">Cosmic Bit Flip — CMU PicoCTF</div>
+                <div class="cv-secondary">5th nationally; 17/1551 internationally in UofTCTF.</div>
+              </div>
+              <div class="cv-right">2026</div>
+            </div>
+            <div class="cv-row">
+              <div class="cv-row-main">
+                <div class="cv-primary">Team 10221 — VanderbiltU SquirrelCTF</div>
+                <div class="cv-secondary">1st place overall.</div>
+              </div>
+              <div class="cv-right">2026</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="cv-section">
+          <h3 class="cv-h3">SKILLS</h3>
+          <div class="cv-list">
+            <div class="cv-row">
+              <div class="cv-row-main">
+                <div class="cv-primary">CAD & Mechanical</div>
+                <div class="cv-secondary">PTC Onshape, SolidWorks, Autodesk Fusion 360, CAM, manual machining, 3D printing</div>
+              </div>
+            </div>
+            <div class="cv-row">
+              <div class="cv-row-main">
+                <div class="cv-primary">Programming</div>
+                <div class="cv-secondary">C, C++, Python</div>
+              </div>
+            </div>
+            <div class="cv-row">
+              <div class="cv-row-main">
+                <div class="cv-primary">Networking & Security</div>
+                <div class="cv-secondary">Cisco (EIGRP, OSPF, VLANs, ACLs, NAT, DHCP/DNS), Packet Tracer, Windows hardening</div>
+              </div>
+            </div>
+            <div class="cv-row">
+              <div class="cv-row-main">
+                <div class="cv-primary">Embedded</div>
+                <div class="cv-secondary">ESP32, soldering & wiring</div>
+              </div>
+            </div>
+            <div class="cv-row">
+              <div class="cv-row-main">
+                <div class="cv-primary">Languages</div>
+                <div class="cv-secondary">Spanish (Seal of Biliteracy)</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="cv-section">
+          <h3 class="cv-h3">AWARDS</h3>
+          <div class="cv-list">
+            <div class="cv-row">
+              <div class="cv-row-main">
+                <div class="cv-primary">AP Scholar</div>
+              </div>
+            </div>
+            <div class="cv-row">
+              <div class="cv-row-main">
+                <div class="cv-primary">MTAC State Honors (Piano, 4×) · Branch Honors (3×)</div>
+              </div>
+            </div>
+            <div class="cv-row">
+              <div class="cv-row-main">
+                <div class="cv-primary">SF All-City Jazz Band, 1st Trumpet (2×)</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+
+  <style is:global>
+    .cv-wrapper {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 40px 0 24px;
+    }
+    .cv-header { margin-bottom: 32px; }
+    .cv-h1 {
+      font-family: "Montserrat", sans-serif;
+      font-size: 56px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--fg-strong);
+      margin: 0 0 12px;
+      line-height: 1;
+    }
+    .cv-lede {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 14.5px;
+      color: var(--fg-dim);
+      margin: 0;
+      max-width: 600px;
+    }
+    .cv-prompt {
+      color: var(--accent);
+      font-family: "0xProto Nerd Font Mono", "0xProto", monospace;
+      font-size: 14px;
+      margin-top: 1px;
+      flex-shrink: 0;
+    }
+    .cv-actions {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 32px;
+    }
+    .cv-dl-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      padding: 11px 18px;
+      background: linear-gradient(180deg, rgba(157,58,53,0.20) 0%, rgba(120,40,35,0.10) 100%);
+      border: 1px solid var(--accent-line-strong);
+      border-radius: 6px;
+      color: var(--accent-bright);
+      text-decoration: none;
+      font-size: 13px;
+      font-family: "0xProto Nerd Font Mono", "0xProto", monospace;
+      transition: background .15s, border-color .15s;
+    }
+    .cv-dl-btn:hover {
+      background: linear-gradient(180deg, rgba(157,58,53,0.30) 0%, rgba(120,40,35,0.15) 100%);
+      border-color: var(--accent-bright);
+    }
+    .cv-size { color: var(--accent-dim); font-size: 11px; }
+    .cv-open-link {
+      color: var(--fg-dim);
+      font-size: 12px;
+      text-decoration: none;
+      font-family: "0xProto Nerd Font Mono", "0xProto", monospace;
+      transition: color .12s;
+    }
+    .cv-open-link:hover { color: var(--fg-strong); }
+    .cv-preview {
+      background: var(--surface);
+      border: 1px solid var(--accent-line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .cv-preview-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--accent-line);
+      background: var(--surface-2);
+    }
+    .cv-preview-dots { display: flex; gap: 6px; }
+    .cv-preview-dots span {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--fg-ghost);
+    }
+    .cv-preview-name {
+      font-family: "Montserrat", sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--fg-faint);
+    }
+    .cv-preview-body {
+      padding: 40px 48px;
+      background: var(--paper);
+    }
+    .cv-h2 {
+      font-family: "Montserrat", sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--fg-strong);
+      margin: 0 0 4px;
+    }
+    .cv-sub {
+      font-size: 12px;
+      color: var(--fg-dim);
+      font-family: "Avenir Next", Avenir, "Montserrat", sans-serif;
+      font-weight: 600;
+      margin: 0 0 28px;
+    }
+    .cv-section { margin-bottom: 24px; }
+    .cv-h3 {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 600;
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      margin: 0 0 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--accent-line);
+    }
+    .cv-list { display: flex; flex-direction: column; gap: 10px; }
+    .cv-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: baseline;
+    }
+    .cv-row-main { display: flex; flex-direction: column; gap: 2px; }
+    .cv-primary {
+      font-size: 14px;
+      color: var(--fg-strong);
+      font-family: "Avenir Next", Avenir, "Montserrat", sans-serif;
+      font-weight: 500;
+    }
+    .cv-secondary {
+      font-size: 13px;
+      color: var(--fg-dim);
+      line-height: 1.5;
+    }
+    .cv-right {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 600;
+      font-size: 11px;
+      color: var(--fg-faint);
+    }
+    .cv-foot {
+      font-size: 11px;
+      color: var(--fg-faint);
+      text-align: center;
+      margin: 24px 0 0;
+      font-style: italic;
+    }
+  </style>
+</Shell>

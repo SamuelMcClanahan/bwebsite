@@ -1,0 +1,207 @@
+---
+import Shell from './Shell.astro';
+import TableOfContents from '../components/react/TableOfContents.tsx';
+import { render, type CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'work'>;
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+const slug = post.id.replace(/\.md$/, '');
+
+const fmtDate = (d: Date) => {
+  const mon = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][d.getMonth()];
+  return `${mon} ${d.getDate()}, ${d.getFullYear()}`;
+};
+---
+
+<Shell title={`${post.data.title} · samuel.m`} breadcrumb={`~/work/${slug}`} page="work">
+  <div class="blog-post-wrapper">
+    <a href="/work" class="back-link">← back to ~/work</a>
+
+    <header class="post-header">
+      <h1 class="post-h1">{post.data.title}</h1>
+      <div class="post-meta">
+        <span class="post-date">{fmtDate(post.data.date)}</span>
+        <span class="post-dot">·</span>
+        <div class="post-tags">
+          {post.data.tags.map((t) => <span class="post-tag">{t}</span>)}
+        </div>
+      </div>
+    </header>
+
+    <div class="post-layout">
+      <article class="post-article">
+        <Content />
+      </article>
+      <aside class="post-toc">
+        <TableOfContents headings={headings} client:load />
+      </aside>
+    </div>
+  </div>
+
+  <style is:global>
+    .blog-post-wrapper {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 32px 0 24px;
+    }
+    .back-link {
+      display: inline-block;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-family: "0xProto Nerd Font Mono", "0xProto", monospace;
+      font-size: 12px;
+      color: var(--fg-dim);
+      padding: 0;
+      margin-bottom: 32px;
+      text-decoration: none;
+      transition: color .12s;
+    }
+    .back-link:hover { color: var(--fg-strong); }
+    .post-header { margin-bottom: 40px; max-width: 760px; }
+    .post-h1 {
+      font-family: "Montserrat", sans-serif;
+      font-size: 44px;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: var(--fg-strong);
+      margin: 0 0 14px;
+      line-height: 1.1;
+      text-wrap: balance;
+    }
+    .post-meta {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .post-date {
+      font-family: "0xProto Nerd Font Mono", "0xProto", monospace;
+      font-size: 12px;
+      color: var(--fg-faint);
+    }
+    .post-dot { color: var(--fg-ghost); }
+    .post-tags { display: flex; gap: 10px; }
+    .post-tag {
+      font-size: 11px;
+      color: var(--accent-dim);
+      font-family: "0xProto Nerd Font Mono", "0xProto", monospace;
+    }
+    .post-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 240px;
+      gap: 56px;
+      align-items: flex-start;
+    }
+    .post-article {
+      font-family: "Avenir Next", Avenir, "Montserrat", sans-serif;
+      font-size: 15.5px;
+      line-height: 1.7;
+      color: var(--fg);
+      min-width: 0;
+    }
+    .post-article h2 {
+      font-family: "Montserrat", sans-serif;
+      font-size: 30px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--fg-strong);
+      margin: 48px 0 16px;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+    .post-article h3 {
+      font-family: "Montserrat", sans-serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--fg-strong);
+      margin: 32px 0 12px;
+    }
+    .post-article p {
+      margin: 0 0 18px;
+      text-wrap: pretty;
+    }
+    .post-article a {
+      color: var(--accent-bright);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .post-article code {
+      font-family: "0xProto Nerd Font Mono", "0xProto", monospace;
+      font-size: 12.5px;
+      background: var(--accent-soft);
+      padding: 1px 6px;
+      border-radius: 3px;
+      color: var(--accent-bright);
+    }
+    .post-article pre {
+      font-family: "0xProto Nerd Font Mono", "0xProto", monospace;
+      font-size: 12.5px;
+      background: var(--surface);
+      border: 1px solid var(--accent-line);
+      border-radius: 6px;
+      padding: 14px 16px;
+      color: var(--fg-mid);
+      overflow: auto;
+      line-height: 1.5;
+      margin: 8px 0 24px;
+    }
+    .post-article pre code {
+      background: transparent;
+      padding: 0;
+      color: inherit;
+    }
+    .post-article details {
+      background: var(--surface);
+      border: 1px solid var(--accent-line);
+      border-radius: 6px;
+      margin: 8px 0 24px;
+      overflow: hidden;
+    }
+    .post-article summary {
+      font-family: "0xProto Nerd Font Mono", "0xProto", monospace;
+      font-size: 12px;
+      color: var(--fg-dim);
+      padding: 10px 14px;
+      cursor: pointer;
+      user-select: none;
+      transition: background .12s;
+    }
+    .post-article summary:hover {
+      background: var(--accent-soft);
+    }
+    .post-article details[open] summary {
+      border-bottom: 1px solid var(--accent-line);
+    }
+    .post-article ul, .post-article ol {
+      padding-left: 20px;
+      margin: 0 0 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .post-article li {
+      margin: 0;
+    }
+    .post-article strong {
+      color: var(--fg-strong);
+      font-weight: 600;
+    }
+    .post-article img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 6px;
+      margin: 8px 0 24px;
+      border: 1px solid var(--accent-line);
+    }
+    .post-toc {
+      position: relative;
+    }
+  </style>
+</Shell>

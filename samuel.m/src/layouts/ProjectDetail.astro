@@ -1,0 +1,222 @@
+---
+import Shell from './Shell.astro';
+import { render, type CollectionEntry } from 'astro:content';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+const id = project.id.replace(/\.md$/, '');
+---
+
+<Shell title={`${project.data.name} · samuel.m`} breadcrumb={`~/projects/${id}`} page="work">
+  <div class="project-wrapper">
+    <a href="/projects" class="back-link">← back to ~/projects</a>
+
+    <header class="project-header">
+      <div class="project-meta">
+        <span class="project-tag">{project.data.tag}</span>
+        <span class="project-dot">·</span>
+        <span class="project-year">{project.data.year}</span>
+        <span class="project-dot">·</span>
+        <span class="project-status">{project.data.status}</span>
+      </div>
+      <h1 class="project-h1">{project.data.name}</h1>
+      <p class="project-summary">{project.data.summary}</p>
+    </header>
+
+    <div class="project-layout">
+      <article class="project-article">
+        <Content />
+      </article>
+      <aside class="project-side">
+        <div class="facts">
+          <div class="fact">
+            <span class="fact-label">STATUS</span>
+            <span class="fact-val">{project.data.status}</span>
+          </div>
+          <div class="fact">
+            <span class="fact-label">STACK</span>
+            <span class="fact-val">{project.data.tag}</span>
+          </div>
+          <div class="fact">
+            <span class="fact-label">STARTED</span>
+            <span class="fact-val">{project.data.year.split(' ')[0]}</span>
+          </div>
+          <div class="fact">
+            <span class="fact-label">REPO</span>
+            <a href="https://github.com/ItzCopiouz" class="fact-link" target="_blank" rel="noopener">github.com/itzcopiouz</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <style is:global>
+    .project-wrapper {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 32px 0 24px;
+    }
+    .back-link {
+      display: inline-block;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-family: "0xProto Nerd Font Mono", "0xProto", monospace;
+      font-size: 12px;
+      color: var(--fg-dim);
+      padding: 0;
+      margin-bottom: 32px;
+      text-decoration: none;
+      transition: color .12s;
+    }
+    .back-link:hover { color: var(--fg-strong); }
+    .project-header { margin-bottom: 40px; max-width: 720px; }
+    .project-meta {
+      display: flex;
+      gap: 10px;
+      font-size: 11px;
+      color: var(--fg-dim);
+      margin-bottom: 14px;
+      font-family: "0xProto Nerd Font Mono", "0xProto", monospace;
+    }
+    .project-tag { color: var(--accent-dim); }
+    .project-dot { color: var(--fg-ghost); }
+    .project-status {
+      color: var(--accent-bright);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .project-h1 {
+      font-family: "Montserrat", sans-serif;
+      font-size: 56px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--fg-strong);
+      margin: 0 0 14px;
+      line-height: 1;
+    }
+    .project-summary {
+      font-size: 16px;
+      color: var(--fg-mid);
+      line-height: 1.55;
+      margin: 0;
+      text-wrap: pretty;
+    }
+    .project-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 240px;
+      gap: 56px;
+      align-items: flex-start;
+    }
+    .project-article {
+      font-family: "Avenir Next", Avenir, "Montserrat", sans-serif;
+      font-size: 15.5px;
+      line-height: 1.7;
+      color: var(--fg);
+    }
+    .project-article h2 {
+      font-family: "Montserrat", sans-serif;
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--fg-strong);
+      margin: 32px 0 12px;
+    }
+    .project-article h3 {
+      font-family: "Montserrat", sans-serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--fg-strong);
+      margin: 32px 0 12px;
+    }
+    .project-article p {
+      margin: 0 0 18px;
+      text-wrap: pretty;
+    }
+    .project-article a {
+      color: var(--accent-bright);
+      text-decoration: none;
+    }
+    .project-article a:hover { text-decoration: underline; }
+    .project-article code {
+      font-family: "0xProto Nerd Font Mono", "0xProto", monospace;
+      font-size: 12.5px;
+      background: var(--accent-soft);
+      padding: 1px 6px;
+      border-radius: 3px;
+      color: var(--accent-bright);
+    }
+    .project-article pre {
+      font-family: "0xProto Nerd Font Mono", "0xProto", monospace;
+      font-size: 12.5px;
+      background: var(--surface);
+      border: 1px solid var(--accent-line);
+      border-radius: 6px;
+      padding: 14px 16px;
+      color: var(--fg-mid);
+      overflow: auto;
+      line-height: 1.5;
+      margin: 8px 0 24px;
+    }
+    .project-article pre code {
+      background: transparent;
+      padding: 0;
+      color: inherit;
+    }
+    .project-article ul, .project-article ol {
+      padding-left: 20px;
+      margin: 0 0 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .project-article strong {
+      color: var(--fg-strong);
+      font-weight: 600;
+    }
+    .project-side {
+      position: relative;
+    }
+    .facts {
+      background: var(--surface);
+      border: 1px solid var(--accent-line);
+      border-radius: 8px;
+      padding: 16px 18px;
+      position: sticky;
+      top: 100px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .fact {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--accent-line);
+    }
+    .fact:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .fact-label {
+      font-family: "0xProto Nerd Font Mono", "0xProto", monospace;
+      font-size: 10px;
+      color: var(--fg-faint);
+      letter-spacing: 0.12em;
+    }
+    .fact-val {
+      font-size: 13px;
+      color: var(--fg-strong);
+    }
+    .fact-link {
+      font-size: 13px;
+      color: var(--accent-bright);
+      text-decoration: none;
+    }
+    .fact-link:hover { text-decoration: underline; }
+  </style>
+</Shell>
