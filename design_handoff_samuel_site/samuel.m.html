@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>samuel.m</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=0xProto:wght@400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg, #0a0807);
+    color: var(--fg, #bdb6ad);
+    font-family: "Avenir Next", Avenir, "Montserrat", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background .25s ease, color .25s ease;
+  }
+  ::selection { background: var(--accent, rgba(200, 65, 58, 0.4)); color: #fff; }
+  @keyframes blink { 0%, 50% { opacity: 1; } 50.01%, 100% { opacity: 0; } }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+  .page-fade { animation: fadeIn .25s ease-out; }
+  a { color: inherit; }
+  button:focus-visible, a:focus-visible, input:focus-visible {
+    outline: 1px solid rgba(200, 80, 70, 0.6); outline-offset: 2px;
+  }
+  /* scrollbar */
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--accent-line-strong, rgba(120, 40, 35, 0.18)); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--accent-dim, rgba(120, 40, 35, 0.30)); }
+  /* suppress default button focus borders on card-style buttons */
+  button:focus { outline: none; }
+  button::-moz-focus-inner { border: 0; }
+  /* social hover */
+  a[title]:hover { color: var(--accent-bright, #d4847e) !important; }
+  /* tab hover */
+  button[data-tab]:hover { color: var(--fg-strong, #d4cfc8) !important; }
+  /* theme btn hover */
+  button[title^="switch to"]:hover { color: var(--accent-bright) !important; border-color: var(--accent) !important; }
+</style>
+<link id="gfont-Montserrat" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&amp;display=swap">
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="site/data.jsx"></script>
+<script type="text/babel" src="site/shell.jsx"></script>
+<script type="text/babel" src="site/page-home.jsx"></script>
+<script type="text/babel" src="site/page-blog.jsx"></script>
+<script type="text/babel" src="site/page-post.jsx"></script>
+<script type="text/babel" src="site/page-work.jsx"></script>
+<script type="text/babel" src="site/page-project-cv.jsx"></script>
+
+<script type="text/babel">
+  const App = () => {
+    const [route, setRoute] = React.useState({ page: 'home', params: {} });
+    const [theme, setTheme] = React.useState(() => localStorage.getItem('slm-theme') || 'dark');
+    const toggleTheme = () => setTheme(t => {
+      const next = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('slm-theme', next);
+      return next;
+    });
+
+    const onNav = (page, params = {}) => {
+      window.scrollTo({ top: 0 });
+      setRoute({ page, params });
+    };
+
+    // Listen for global keypress: '/' to open command, but only when not typing
+    React.useEffect(() => {
+      const fn = (e) => {
+        if (e.key === '/' && !['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) {
+          e.preventDefault();
+          // Trigger command palette open via custom event
+          window.dispatchEvent(new CustomEvent('open-cmd'));
+        }
+      };
+      window.addEventListener('keydown', fn);
+      return () => window.removeEventListener('keydown', fn);
+    }, []);
+
+    const breadcrumb = (() => {
+      const p = route.page;
+      if (p === 'home') return '~/';
+      if (p === 'work') return '~/projects';
+      if (p === 'project') return `~/projects/${route.params.id || ''}`;
+      if (p === 'blog') return '~/blog';
+      if (p === 'post') return `~/blog/${route.params.slug || ''}`;
+      if (p === 'cv') return '~/cv';
+      return '~/';
+    })();
+
+    let content = null;
+    if (route.page === 'home') content = <PageHome onNav={onNav}/>;
+    else if (route.page === 'blog') content = <PageBlog onNav={onNav}/>;
+    else if (route.page === 'post') content = <PagePost slug={route.params.slug} onNav={onNav}/>;
+    else if (route.page === 'work') content = <PageWork onNav={onNav}/>;
+    else if (route.page === 'project') content = <PageProject id={route.params.id} onNav={onNav}/>;
+    else if (route.page === 'cv') content = <PageCV onNav={onNav}/>;
+
+    return (
+      <Shell page={route.page === 'project' ? 'work' : (route.page === 'post' ? 'blog' : route.page)} breadcrumb={breadcrumb} onNav={onNav} theme={theme} onToggleTheme={toggleTheme}>
+        <div key={route.page + JSON.stringify(route.params)} className="page-fade">
+          {content}
+        </div>
+      </Shell>
+    );
+  };
+
+  ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>
