@@ -218,5 +218,14 @@ const id = project.id.replace(/\.md$/, '');
       text-decoration: none;
     }
     .fact-link:hover { text-decoration: underline; }
+    @media (max-width: 768px) {
+      .project-wrapper { padding: 24px 16px 24px; }
+      .project-h1 { font-size: 36px; }
+      .project-layout {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .facts { position: static; }
+    }
   </style>
 </Shell>

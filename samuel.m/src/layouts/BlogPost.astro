@@ -203,5 +203,14 @@ const fmtDate = (d: Date) => {
     .post-toc {
       position: relative;
     }
+    @media (max-width: 768px) {
+      .blog-post-wrapper { padding: 24px 16px 24px; }
+      .post-h1 { font-size: 30px; }
+      .post-layout {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+      .post-toc { display: none; }
+    }
   </style>
 </Shell>
