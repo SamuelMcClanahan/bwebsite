@@ -113,7 +113,7 @@ The whole assembly mounts to a carbon fiber plate and box tubing superstructure 
 
 One Limelight 4 is mounted on the shooter for optimal pose estimation, enabling shooting on the move. Since the shooter always faces toward the nearest AprilTag in its shooting direction, pose quality is high. A second LL4 is mounted on the elevator carriage to provide tag visibility while scoring story panels at height.
 
----
+### Full Robot
 
 <img src="/currybot/full-robot.png" alt="Currybot — full robot CAD" style="max-width:82%" />
 
