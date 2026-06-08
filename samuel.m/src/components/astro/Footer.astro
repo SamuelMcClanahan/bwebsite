@@ -5,7 +5,31 @@ import SocialIcons from './SocialIcons.astro';
 <footer class="footer">
   <div class="gradient-bar"></div>
   <div class="footer-mountains">
-    <img src="/footer-mountains.svg" alt="" aria-hidden="true" />
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false" style="width:100%;height:auto;display:block;">
+      <defs>
+        <linearGradient id="mtn-sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="var(--mtn-sky-a)"></stop>
+          <stop offset="0.5" stop-color="var(--mtn-sky-b)"></stop>
+          <stop offset="1" stop-color="var(--mtn-sky-c)"></stop>
+        </linearGradient>
+        <radialGradient id="mtn-glow" cx="0.5" cy="0.65" r="0.7">
+          <stop offset="0" stop-color="var(--mtn-glow)" stop-opacity="0.28"></stop>
+          <stop offset="0.5" stop-color="var(--mtn-glow)" stop-opacity="0.08"></stop>
+          <stop offset="1" stop-color="var(--mtn-glow)" stop-opacity="0"></stop>
+        </radialGradient>
+        <radialGradient id="mtn-vig" cx="0.5" cy="0.5" r="0.7">
+          <stop offset="0.4" stop-color="var(--mtn-sky-a)" stop-opacity="0"></stop>
+          <stop offset="1" stop-color="var(--mtn-sky-a)" stop-opacity="0.45"></stop>
+        </radialGradient>
+      </defs>
+      <rect width="1200" height="320" fill="url(#mtn-sky)"></rect>
+      <rect width="1200" height="320" fill="url(#mtn-glow)"></rect>
+      <path d="M0,160 C80,150 160,170 240,158 C320,146 400,168 480,156 C560,144 640,166 720,154 C800,142 880,164 960,152 C1040,140 1120,162 1200,150 L1200,320 L0,320 Z" fill="var(--mtn-1)"></path>
+      <path d="M0,200 C100,184 200,210 300,196 C400,182 500,208 600,194 C700,180 800,206 900,192 C1000,178 1100,204 1200,190 L1200,320 L0,320 Z" fill="var(--mtn-2)"></path>
+      <path d="M0,240 C70,220 140,254 210,234 C280,214 350,248 420,228 C490,208 560,242 630,222 C700,202 770,236 840,216 C910,196 980,230 1050,210 C1120,190 1170,224 1200,212 L1200,320 L0,320 Z" fill="var(--mtn-3)"></path>
+      <path d="M0,278 C60,266 120,288 180,274 C240,260 300,284 360,272 C420,260 480,282 540,270 C600,258 660,280 720,268 C780,256 840,278 900,266 C960,254 1020,276 1080,264 C1140,252 1170,272 1200,266 L1200,320 L0,320 Z" fill="var(--mtn-4)"></path>
+      <rect width="1200" height="320" fill="url(#mtn-vig)"></rect>
+    </svg>
   </div>
   <div class="footer-inner">
     <SocialIcons />
@@ -33,11 +57,6 @@ import SocialIcons from './SocialIcons.astro';
     overflow: hidden;
     margin-bottom: 24px;
     opacity: 0.6;
-  }
-  .footer-mountains img {
-    width: 100%;
-    height: auto;
-    display: block;
   }
   .footer-inner {
     display: flex;

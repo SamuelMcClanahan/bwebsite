@@ -26,6 +26,14 @@
   --wash-1:              rgba(157, 58, 53, 0.18);
   --wash-2:              rgba(120, 40, 35, 0.10);
   --wash-3:              rgba(120, 40, 35, 0.14);
+  --mtn-sky-a:           #0a0908;
+  --mtn-sky-b:           #14110f;
+  --mtn-sky-c:           #1a1614;
+  --mtn-glow:            #78282a;
+  --mtn-1:               #1f1a17;
+  --mtn-2:               #181412;
+  --mtn-3:               #0c0a09;
+  --mtn-4:               #070605;
 }
 
 body.light {
@@ -54,6 +62,14 @@ body.light {
   --wash-1:              rgba(200, 80, 70, 0.10);
   --wash-2:              rgba(180, 70, 60, 0.06);
   --wash-3:              rgba(180, 70, 60, 0.08);
+  --mtn-sky-a:           #f0ebe3;
+  --mtn-sky-b:           #ede7de;
+  --mtn-sky-c:           #e8e1d8;
+  --mtn-glow:            #c87060;
+  --mtn-1:               #ddd4c6;
+  --mtn-2:               #d4cabc;
+  --mtn-3:               #ccc2b2;
+  --mtn-4:               #c0b6a4;
 }
 
 * {

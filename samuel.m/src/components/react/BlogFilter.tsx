@@ -33,63 +33,46 @@ export default function BlogFilter({ posts }: { posts: Post[] }) {
     return `${mon} ${parseInt(day, 10)}, ${y}`;
   };
 
-  if (!mounted) {
-    return (
-      <div>
-        <div className="filter-bar">
-          <div className="filter-group">
-            <span className="filter-label">--filter</span>
-            {cats.map((c) => (
-              <span key={c} className="chip">{c}</span>
-            ))}
-          </div>
-          <div className="filter-group">
-            <span className="filter-label">--sort</span>
-            <span className="chip">newest</span>
-            <span className="chip">oldest</span>
-            <span className="chip">a-z</span>
-          </div>
-        </div>
-        <div className="list">
-          {posts.slice(0, 6).map((p) => (
-            <a key={p.slug} href={`/work/${p.slug}`} className="row">
-              <span className="row-date">{fmtDate(p.date)}</span>
-              <div className="row-main">
-                <span className="row-title">{p.title}</span>
-                <span className="row-excerpt">{p.excerpt}</span>
-              </div>
-              <span className="row-arrow">→</span>
-            </a>
-          ))}
-        </div>
-      </div>
-    );
-  }
+  const displayPosts = mounted ? sorted : posts.slice(0, 6);
 
   return (
     <div>
       <div className="filter-bar">
         <div className="filter-group">
           <span className="filter-label">--filter</span>
-          {cats.map((c) => (
-            <button
-              key={c}
-              onClick={() => setFilter(c)}
-              className={`chip ${filter === c ? 'chip-active' : ''}`}
-            >
-              {c}
-            </button>
-          ))}
+          {cats.map((c) =>
+            mounted ? (
+              <button
+                key={c}
+                onClick={() => setFilter(c)}
+                className={`chip ${filter === c ? 'chip-active' : ''}`}
+              >
+                {c}
+              </button>
+            ) : (
+              <span key={c} className="chip">{c}</span>
+            )
+          )}
         </div>
         <div className="filter-group">
           <span className="filter-label">--sort</span>
-          <button onClick={() => setSort('date-desc')} className={`chip ${sort === 'date-desc' ? 'chip-active' : ''}`}>newest</button>
-          <button onClick={() => setSort('date-asc')} className={`chip ${sort === 'date-asc' ? 'chip-active' : ''}`}>oldest</button>
-          <button onClick={() => setSort('title')} className={`chip ${sort === 'title' ? 'chip-active' : ''}`}>a-z</button>
+          {mounted ? (
+            <>
+              <button onClick={() => setSort('date-desc')} className={`chip ${sort === 'date-desc' ? 'chip-active' : ''}`}>newest</button>
+              <button onClick={() => setSort('date-asc')} className={`chip ${sort === 'date-asc' ? 'chip-active' : ''}`}>oldest</button>
+              <button onClick={() => setSort('title')} className={`chip ${sort === 'title' ? 'chip-active' : ''}`}>a-z</button>
+            </>
+          ) : (
+            <>
+              <span className="chip">newest</span>
+              <span className="chip">oldest</span>
+              <span className="chip">a-z</span>
+            </>
+          )}
         </div>
       </div>
       <div className="list">
-        {sorted.map((p) => (
+        {displayPosts.map((p) => (
           <a key={p.slug} href={`/work/${p.slug}`} className="row">
             <span className="row-date">{fmtDate(p.date)}</span>
             <div className="row-main">
