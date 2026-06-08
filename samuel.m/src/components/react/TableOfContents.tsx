@@ -38,7 +38,11 @@ export default function TableOfContents({ headings }: { headings: Heading[] }) {
             className={`toc-link ${it.slug === activeId ? 'toc-active' : ''} ${depth >= 2 ? 'toc-dim' : ''}`}
             onClick={(e) => {
               e.preventDefault();
-              document.getElementById(it.slug)?.scrollIntoView({ behavior: 'smooth' });
+              const el = document.getElementById(it.slug);
+              if (el) {
+                const top = el.getBoundingClientRect().top + window.scrollY - 80;
+                window.scrollTo({ top, behavior: 'smooth' });
+              }
             }}
           >
             {it.slug === activeId && <span className="toc-bar" />}
