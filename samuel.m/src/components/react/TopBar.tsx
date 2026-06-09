@@ -27,7 +27,7 @@ export default function TopBar({ page }: { page: string }) {
     return () => window.removeEventListener('toggle-theme', handler);
   }, []);
 
-  const ts = time.toISOString().replace('T', ' ').slice(0, 19);
+  const ts = time.toLocaleString('sv-SE', { timeZone: 'America/Los_Angeles' });
 
   const handleToggleTheme = () => {
     const next = toggleTheme();
