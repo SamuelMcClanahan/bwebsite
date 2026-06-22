@@ -7,10 +7,36 @@ const NAV = [
   { id: 'cv', href: '/cv', label: '~/cv' },
 ];
 
+function TerminalIcon() {
+  return (
+    <svg className="top-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="m4 7 5 5-5 5" />
+      <path d="M11 17h9" />
+    </svg>
+  );
+}
+
+function SunIcon() {
+  return (
+    <svg className="top-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+    </svg>
+  );
+}
+
+function MoonIcon() {
+  return (
+    <svg className="top-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" />
+    </svg>
+  );
+}
+
 export default function TopBar({ page }: { page: string }) {
   const [time, setTime] = useState(() => new Date());
   const [theme, setThemeState] = useState<'dark' | 'light'>(() => {
-    if (typeof localStorage !== 'undefined') return getTheme();
+    if (typeof window !== 'undefined') return getTheme();
     return 'dark';
   });
 
@@ -20,8 +46,12 @@ export default function TopBar({ page }: { page: string }) {
   }, []);
 
   useEffect(() => {
+    setThemeState(getTheme());
+  }, []);
+
+  useEffect(() => {
     const handler = () => {
-      setThemeState(getTheme() === 'dark' ? 'light' : 'dark');
+      setThemeState(toggleTheme());
     };
     window.addEventListener('toggle-theme', handler);
     return () => window.removeEventListener('toggle-theme', handler);
@@ -55,19 +85,11 @@ export default function TopBar({ page }: { page: string }) {
       </div>
       <div className="top-right">
         <button onClick={toggleZsh} className="cmd-btn" title="Press / or click to open zsh">
+          <TerminalIcon />
           zsh
         </button>
         <button onClick={handleToggleTheme} className="theme-btn" title={`switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}>
-          {theme === 'dark' ? (
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
-              <circle cx="12" cy="12" r="4"/>
-              <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
-            </svg>
-          ) : (
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/>
-            </svg>
-          )}
+          {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
         </button>
         <span className="clock">{ts}</span>
       </div>
@@ -137,6 +159,17 @@ export default function TopBar({ page }: { page: string }) {
           transition: color .15s;
         }
         .theme-btn:hover { color: var(--fg-strong); }
+        .top-icon {
+          width: 14px;
+          height: 14px;
+          display: block;
+          fill: none;
+          stroke: currentColor;
+          stroke-width: 1.8;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+          flex: 0 0 auto;
+        }
         .clock { color: var(--fg-faint); font-size: 11px; }
       `}</style>
     </header>

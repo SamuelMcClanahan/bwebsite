@@ -12,18 +12,20 @@
   .bloom {
     position: absolute;
   }
-  /* Darkest in the top-left corner, fading across the entire top edge */
+  /* Thin red glow spanning the full width across the very top */
   .bloom-top {
     top: 0;
     left: 0;
     width: 100%;
-    height: 60%;
-    background: radial-gradient(
-      125% 90% at 0% 0%,
-      rgba(157, 58, 53, 0.34) 0%,
-      rgba(157, 58, 53, 0.12) 38%,
-      transparent 72%
+    height: 520px;
+    background: linear-gradient(
+      to bottom,
+      #390000 0%,
+      rgba(57, 0, 0, 0.55) 30%,
+      rgba(57, 0, 0, 0.22) 58%,
+      rgba(57, 0, 0, 0.06) 82%,
+      transparent 100%
     );
-    filter: blur(50px);
+    filter: blur(54px);
   }
 </style>
