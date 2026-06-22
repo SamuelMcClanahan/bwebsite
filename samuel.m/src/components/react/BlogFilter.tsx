@@ -88,10 +88,11 @@ export default function BlogFilter({ posts }: { posts: Post[] }) {
           display: flex;
           flex-wrap: wrap;
           gap: 24px;
-          padding: 12px 16px;
-          background: var(--surface);
-          border: 1px solid var(--accent-line);
-          border-radius: 6px;
+          padding: 0 0 16px;
+          background: transparent;
+          border: none;
+          border-bottom: 1px solid var(--accent-line);
+          border-radius: 0;
           margin-bottom: 32px;
         }
         .filter-group { display: flex; align-items: center; gap: 6px; }
@@ -103,23 +104,22 @@ export default function BlogFilter({ posts }: { posts: Post[] }) {
         }
         .chip {
           background: transparent;
-          border: 1px solid var(--accent-line-strong);
+          border: none;
           color: var(--fg-dim);
-          padding: 4px 10px;
-          border-radius: 4px;
+          padding: 4px 6px;
+          border-radius: 0;
           font-family: "0xProto Nerd Font Mono", "0xProto", monospace;
           font-size: 11px;
           cursor: pointer;
           display: inline-flex;
           align-items: center;
           gap: 6px;
-          transition: background .12s, color .12s, border-color .12s;
+          transition: color .12s;
         }
         .chip:hover { color: var(--fg-strong); }
         .chip-active {
-          background: var(--accent-soft) !important;
+          background: transparent !important;
           color: var(--accent-bright) !important;
-          border-color: var(--accent-line-strong) !important;
         }
         .list { display: flex; flex-direction: column; }
         .row {
@@ -137,7 +137,7 @@ export default function BlogFilter({ posts }: { posts: Post[] }) {
           text-decoration: none;
           transition: background .12s;
         }
-        .row:hover { background: var(--accent-soft); }
+        .row:hover .row-title { color: var(--accent-bright); }
         .row-date {
           font-family: "0xProto Nerd Font Mono", "0xProto", monospace;
           font-size: 11px;

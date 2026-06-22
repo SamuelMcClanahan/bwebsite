@@ -15,7 +15,6 @@ import Shell from '../layouts/Shell.astro';
     <div class="cv-actions">
       <a href="/cv.pdf" class="cv-dl-btn" download>
         <span>↓ download cv.pdf</span>
-        <span class="cv-size">183 kb</span>
       </a>
       <a href="/cv.pdf" target="_blank" class="cv-open-link">open in tab ↗</a>
     </div>
@@ -256,19 +255,18 @@ import Shell from '../layouts/Shell.astro';
       display: inline-flex;
       align-items: center;
       gap: 14px;
-      padding: 11px 18px;
-      background: linear-gradient(180deg, rgba(157,58,53,0.20) 0%, rgba(120,40,35,0.10) 100%);
-      border: 1px solid var(--accent-line-strong);
-      border-radius: 6px;
+      padding: 0;
+      background: none;
+      border: none;
+      border-radius: 0;
       color: var(--accent-bright);
       text-decoration: none;
       font-size: 13px;
       font-family: "0xProto Nerd Font Mono", "0xProto", monospace;
-      transition: background .15s, border-color .15s;
+      transition: color .15s;
     }
     .cv-dl-btn:hover {
-      background: linear-gradient(180deg, rgba(157,58,53,0.30) 0%, rgba(120,40,35,0.15) 100%);
-      border-color: var(--accent-bright);
+      color: var(--fg-strong);
     }
     .cv-size { color: var(--accent-dim); font-size: 11px; }
     .cv-open-link {

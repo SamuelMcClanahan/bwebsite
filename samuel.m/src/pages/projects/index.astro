@@ -70,45 +70,39 @@ const projects = await getCollection('projects');
     .cmd-line {
       display: flex;
       justify-content: space-between;
-      padding: 10px 14px;
-      background: var(--surface);
-      border: 1px solid var(--accent-line);
-      border-radius: 6px;
+      padding: 0 0 12px;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--accent-line);
+      border-radius: 0;
       margin-bottom: 24px;
       font-family: "0xProto Nerd Font Mono", "0xProto", monospace;
       font-size: 12px;
     }
     .cmd { color: var(--fg-mid); }
     .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
     }
     .card {
       display: flex;
       flex-direction: column;
       gap: 8px;
-      padding: 20px 22px;
+      padding: 18px 0;
       text-align: left;
-      background: var(--surface);
-      border: 1px solid var(--accent-line);
-      border-radius: 8px;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--accent-line);
+      border-radius: 0;
       cursor: pointer;
-      transition: border-color .15s, transform .15s, background .15s;
+      transition: none;
       text-decoration: none;
       color: inherit;
-      min-height: 180px;
       outline: none;
       -webkit-appearance: none;
     }
-    .card:hover {
-      border-color: var(--accent-line-strong);
-      background: rgba(28,16,14,0.55);
-      transform: translateY(-1px);
-    }
-    body.light .card:hover {
-      background: rgba(200,80,70,0.06);
-    }
+    .card:hover .card-title { color: var(--accent-bright); }
     .card-title {
       font-family: "Montserrat", sans-serif;
       font-size: 24px;

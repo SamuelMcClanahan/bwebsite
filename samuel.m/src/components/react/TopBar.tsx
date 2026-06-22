@@ -112,10 +112,10 @@ export default function TopBar({ page }: { page: string }) {
         .top-right { display: flex; align-items: center; gap: 12px; }
         .cmd-btn {
           background: transparent;
-          border: 1px solid var(--accent-line-strong);
+          border: none;
           color: var(--fg-dim);
-          padding: 5px 10px;
-          border-radius: 4px;
+          padding: 5px 6px;
+          border-radius: 0;
           font-family: inherit;
           font-size: 11px;
           cursor: pointer;
@@ -126,19 +126,19 @@ export default function TopBar({ page }: { page: string }) {
         .kbd { color: var(--accent); font-weight: 600; }
         .theme-btn {
           background: transparent;
-          border: 1px solid var(--accent-line-strong);
+          border: none;
           color: var(--fg-dim);
           width: 26px;
           height: 26px;
-          border-radius: 4px;
+          border-radius: 0;
           cursor: pointer;
           display: inline-flex;
           align-items: center;
           justify-content: center;
           padding: 0;
-          transition: color .15s, border-color .15s;
+          transition: color .15s;
         }
-        .theme-btn:hover { color: var(--fg-strong); border-color: var(--accent-bright); }
+        .theme-btn:hover { color: var(--fg-strong); }
         .clock { color: var(--fg-faint); font-size: 11px; }
       `}</style>
     </header>

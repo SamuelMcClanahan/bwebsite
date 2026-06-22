@@ -90,10 +90,9 @@ const pinned = PINNED.map((slug) =>
       text-wrap: balance;
     }
     .gradient {
-      background: linear-gradient(110deg, #e8a59f 0%, #c8413a 40%, #7a2520 80%, #4a1a18 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: var(--fg-strong);
+      -webkit-text-fill-color: var(--fg-strong);
+      background: none;
     }
     .body-block {
       display: flex;
@@ -158,7 +157,7 @@ const pinned = PINNED.map((slug) =>
       text-decoration: none;
       transition: background .12s;
     }
-    .post-row:hover { background: var(--accent-soft); }
+    .post-row:hover .post-title { color: var(--accent-bright); }
     .post-date {
       font-size: 11px;
       color: var(--fg-faint);
