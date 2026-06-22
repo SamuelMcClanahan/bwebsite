@@ -81,10 +81,8 @@ export default function TopBar({ page }: { page: string }) {
           align-items: center;
           justify-content: space-between;
           padding: 8px 24px;
-          background: var(--topbar-bg);
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
-          border-bottom: 1px solid var(--accent-line);
+          background: transparent;
+          border-bottom: none;
           font-family: "0xProto Nerd Font Mono", "0xProto", monospace;
           font-size: 12px;
         }
@@ -93,21 +91,21 @@ export default function TopBar({ page }: { page: string }) {
           background: transparent;
           border: none;
           color: var(--fg-dim);
-          padding: 8px 14px;
+          padding: 8px 8px;
           cursor: pointer;
           font-family: inherit;
           font-size: 12px;
-          border-radius: 4px;
+          border-radius: 0;
           display: inline-flex;
           align-items: center;
           gap: 8px;
-          transition: background .12s, color .12s;
+          transition: color .12s;
           text-decoration: none;
         }
         .tab:hover { color: var(--fg-strong); }
         .tab-active {
           color: var(--fg-strong) !important;
-          background: var(--accent-soft);
+          background: transparent;
         }
         .top-right { display: flex; align-items: center; gap: 12px; }
         .cmd-btn {

@@ -6,7 +6,7 @@ interface Props {
 const { path } = Astro.props;
 ---
 
-<div class="breadcrumb">
+<div class="breadcrumb" role="button" tabindex="0" title="open terminal" aria-label="open terminal">
   <span class="user">samuel</span>
   <span class="at">@</span>
   <span class="host">build</span>
@@ -18,6 +18,10 @@ const { path } = Astro.props;
 
 <style>
   .breadcrumb {
+    display: flex;
+    align-items: baseline;
+    width: fit-content;
+    cursor: pointer;
     padding: 14px 24px 12px;
     font-family: "0xProto Nerd Font Mono", "0xProto", monospace;
     font-size: 12px;
@@ -37,3 +41,18 @@ const { path } = Astro.props;
     margin-left: 4px;
   }
 </style>
+
+<script>
+  // Make the prompt itself open/close the terminal, not just the zsh button.
+  const el = document.querySelector(".breadcrumb");
+  if (el) {
+    const toggle = () => window.dispatchEvent(new CustomEvent("toggle-zsh"));
+    el.addEventListener("click", toggle);
+    el.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        toggle();
+      }
+    });
+  }
+</script>

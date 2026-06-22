@@ -126,10 +126,7 @@ export default function ZshPalette({ breadcrumb }: { breadcrumb: string }) {
           position: sticky;
           top: 49px;
           z-index: 9;
-          background: var(--topbar-bg);
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
-          border-bottom: 1px solid var(--accent-line-strong);
+          background: transparent;
           padding: 14px 24px;
           font-family: "0xProto Nerd Font Mono", "0xProto", monospace;
           font-size: 13px;
