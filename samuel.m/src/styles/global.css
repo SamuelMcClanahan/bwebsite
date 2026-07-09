@@ -2,6 +2,7 @@
 
 :root {
   --bg:                  #000000;
+  --gradient-rgb:        57, 0, 0;
   --fg:                  #bdb6ad;
   --fg-strong:           #f0ebe2;
   --fg-mid:              #a8a098;

@@ -20,12 +20,6 @@ import Shell from '../layouts/Shell.astro';
     </div>
 
     <div class="cv-preview">
-      <div class="cv-preview-head">
-        <div class="cv-preview-dots">
-          <span class="dot" /><span class="dot" /><span class="dot" />
-        </div>
-        <span class="cv-preview-name">cv.pdf — preview</span>
-      </div>
       <div class="cv-preview-body">
         <h2 class="cv-h2">Samuel L. McClanahan</h2>
         <p class="cv-sub">san francisco, ca · 415-529-0294 · porkbuns1964@gmail.com · github.com/ItzCopiouz</p>
@@ -278,36 +272,13 @@ import Shell from '../layouts/Shell.astro';
     }
     .cv-open-link:hover { color: var(--fg-strong); }
     .cv-preview {
-      background: var(--surface);
-      border: 1px solid var(--accent-line);
-      border-radius: 8px;
-      overflow: hidden;
-    }
-    .cv-preview-head {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 10px 14px;
-      border-bottom: 1px solid var(--accent-line);
-      background: var(--surface-2);
-    }
-    .cv-preview-dots { display: flex; gap: 6px; }
-    .cv-preview-dots span {
-      display: inline-block;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--fg-ghost);
-    }
-    .cv-preview-name {
-      font-family: "Montserrat", sans-serif;
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--fg-faint);
+      background: none;
+      border: none;
+      border-radius: 0;
     }
     .cv-preview-body {
-      padding: 40px 48px;
-      background: var(--paper);
+      padding: 0;
+      background: none;
     }
     .cv-h2 {
       font-family: "Montserrat", sans-serif;
@@ -328,7 +299,7 @@ import Shell from '../layouts/Shell.astro';
       font-family: "Montserrat", sans-serif;
       font-weight: 600;
       font-size: 11px;
-      color: var(--accent);
+      color: var(--fg-strong);
       letter-spacing: 0.15em;
       margin: 0 0 10px;
       padding-bottom: 6px;
