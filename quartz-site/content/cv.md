@@ -8,7 +8,7 @@ date: 2026-06-01
 [↓ download cv.pdf](/cv.pdf)
 
 **Samuel L. McClanahan**
-San Francisco, CA · 415-529-0294 · porkbuns1964@gmail.com · [github.com/ItzCopiouz](https://github.com/ItzCopiouz)
+San Francisco, CA · porkbuns1964@gmail.com · [github.com/ItzCopiouz](https://github.com/ItzCopiouz)
 
 ## Education
 
