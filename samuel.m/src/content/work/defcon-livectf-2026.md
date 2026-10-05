@@ -3,6 +3,7 @@ title: "DEF CON CTF Qualifiers 2026: LiveCTF"
 date: 2026-05-10
 tags: [ctf, livectf, defcon, bot-strategy]
 category: writeup
+image: "https://hackmd.io/_uploads/rkHQFJreGe.png"
 excerpt: "How we built tooling, iterated bots, and dominated an 80×1000 PvP battlefield across six phases to earn the most points in LiveCTF."
 ---
 

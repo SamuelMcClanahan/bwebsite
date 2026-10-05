@@ -9,6 +9,7 @@ const work = defineCollection({
     tags: z.array(z.string()),
     category: z.enum(['writeup', 'project']),
     excerpt: z.string(),
+    image: z.string().optional(),
   }),
 });
 
@@ -17,13 +18,9 @@ const projects = defineCollection({
   schema: z.object({
     name: z.string(),
     tag: z.string(),
-    status: z.enum(['active', 'shipped', 'v1', 'v2']).optional(),
-    year: z.string().optional(),
+    status: z.enum(['active', 'shipped', 'v1', 'v2']),
+    year: z.string(),
     summary: z.string(),
-    order: z.number().optional(),
-    image: z.string().optional(),
-    role: z.string().optional(),
-    link: z.string().url().optional(),
   }),
 });
 

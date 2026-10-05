@@ -3,25 +3,25 @@ import type { CollectionEntry } from 'astro:content';
 import ProjectImage from './ProjectImage.astro';
 
 interface Props {
-  projects: CollectionEntry<'projects'>[];
+  posts: CollectionEntry<'work'>[];
 }
 
-const { projects } = Astro.props;
-const sorted = [...projects].sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+const { posts } = Astro.props;
+const sorted = [...posts].sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 
 <div class="pgrid">
   {sorted.map((p) => {
-    const id = p.id.replace(/\.md$/, '');
+    const slug = p.id.replace(/\.md$/, '');
     return (
-      <a href={`/projects/${id}/`} class="pcard">
-        <ProjectImage src={p.data.image} alt={p.data.name} label={`${id}.jpg`} ratio="3 / 2" />
+      <a href={`/work/${slug}/`} class="pcard">
+        <ProjectImage src={p.data.image} alt={p.data.title} label={`~/work/${slug}`} ratio="3 / 2" />
         <div class="pcard-body">
-          <h3 class="pcard-title">{p.data.name}</h3>
-          <p class="pcard-desc">{p.data.summary}</p>
+          <h3 class="pcard-title">{p.data.title}</h3>
+          <p class="pcard-desc">{p.data.excerpt}</p>
           <div class="pcard-meta">
-            {p.data.year && <span>{p.data.year}<span class="pcard-dot">·</span></span>}
-            <span class="pcard-tag">{p.data.tag}</span>
+            <span>{p.data.date.toISOString().split('T')[0]}<span class="pcard-dot">·</span></span>
+            <span class="pcard-tag">{p.data.tags.join(' · ')}</span>
           </div>
           <div class="pcard-foot">
             <span class="pcard-open">read more →</span>

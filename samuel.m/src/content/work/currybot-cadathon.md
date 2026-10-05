@@ -3,6 +3,7 @@ title: "Currybot — WCP CADathon"
 date: 2026-05-15
 tags: [frc, cad, robotics, cadathon]
 category: project
+image: "/currybot/full-robot.png"
 excerpt: "A complete CAD submission for the WCP Hero Heist CADathon — a Gadgeteer-archetype FRC robot featuring swerve drive, hooded shooter, two-stage elevator, and a wrist for story panel scoring."
 ---
 

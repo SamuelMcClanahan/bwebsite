@@ -3,39 +3,35 @@ import Shell from '../layouts/Shell.astro';
 import ProjectGrid from '../components/astro/ProjectGrid.astro';
 import { getCollection } from 'astro:content';
 
-const projects = await getCollection('projects');
+const allWork = await getCollection('work');
 ---
 
 <Shell title="samuel.m" breadcrumb="~/" page="home">
   <div class="home-wrapper">
     <section class="hero">
       <div class="mark-row">
-        <span class="mark">vk</span>
+        <span class="mark">slm</span>
         <div class="mark-meta">
-          <span class="mark-name">Vaughn Khouri</span>
-          <span class="mark-loc">technical portfolio & blog</span>
+          <span class="mark-name">Samuel L. McClanahan</span>
+          <span class="mark-loc">San Francisco, CA</span>
         </div>
       </div>
       <h1 class="h1"><span class="gradient">hello!</span></h1>
       <div class="body-block">
         <span class="body-prompt">›</span>
         <p class="body-text">
-          I study Mechanical Engineering (Controls, Instrumentation & Robotics) at MIT. Outside of classes, research, and MIT Motorsports, I build things.<br><br>
-          Here are some of my favorite projects. Click one for the full writeup.
+          I'm a high school junior in San Francisco passionate about AI, cybersecurity, robotics, and hardware. Currently I'm working on making a scalable and low cost plane and drone detection system.<br><br>
+          Want to talk about anything? Reach out at porkbuns1964[at]gmail[dot]com
         </p>
-      </div>
-      <div class="hero-links">
-        <a href="https://www.vkhouri.dev/vmkresume.pdf" target="_blank" rel="noopener">resume ↗</a>
-        <a href="https://www.linkedin.com/in/vaughn-khouri-aa5526233/" target="_blank" rel="noopener">linkedin ↗</a>
       </div>
     </section>
 
     <section class="posts">
       <div class="posts-head">
-        <span class="posts-cmd">$ ls ~/projects</span>
-        <span class="posts-count">{projects.length} projects</span>
+        <span class="posts-cmd">$ ls -t ~/work</span>
+        <a href="/work" class="posts-all">list view ■</a>
       </div>
-      <ProjectGrid projects={projects} />
+      <ProjectGrid posts={allWork} />
     </section>
   </div>
 
@@ -106,20 +102,6 @@ const projects = await getCollection('projects');
       margin: 0;
       text-wrap: pretty;
     }
-    .hero-links {
-      display: flex;
-      gap: 18px;
-      margin-top: 20px;
-      padding-left: 22px;
-      font-family: "0xProto Nerd Font Mono", "0xProto", monospace;
-      font-size: 12px;
-    }
-    .hero-links a {
-      color: var(--accent-dim);
-      text-decoration: none;
-      transition: color .12s;
-    }
-    .hero-links a:hover { color: var(--accent-bright); }
     .posts { margin-bottom: 24px; }
     .posts:last-child { margin-bottom: 0; }
     .posts-head {
@@ -135,11 +117,17 @@ const projects = await getCollection('projects');
       font-size: 12px;
       color: var(--fg-mid);
     }
-    .posts-count {
+    .posts-all {
+      background: transparent;
+      border: none;
+      cursor: pointer;
       font-family: "0xProto Nerd Font Mono", "0xProto", monospace;
       font-size: 11px;
-      color: var(--fg-faint);
+      color: var(--accent-dim);
+      text-decoration: none;
+      transition: color .12s;
     }
+    .posts-all:hover { color: var(--accent-bright); }
     @media (max-width: 640px) {
       .home-wrapper { padding: 32px 16px 24px; }
       .h1 { font-size: 42px; }
