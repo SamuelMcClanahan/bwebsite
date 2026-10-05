@@ -1,0 +1,102 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import ProjectImage from './ProjectImage.astro';
+
+interface Props {
+  projects: CollectionEntry<'projects'>[];
+}
+
+const { projects } = Astro.props;
+const sorted = [...projects].sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+---
+
+<div class="pgrid">
+  {sorted.map((p) => {
+    const id = p.id.replace(/\.md$/, '');
+    return (
+      <a href={`/projects/${id}/`} class="pcard">
+        <ProjectImage src={p.data.image} alt={p.data.name} label={`${id}.jpg`} />
+        <div class="pcard-body">
+          <div class="pcard-head">
+            <h3 class="pcard-title">{p.data.name}</h3>
+            <span class="pcard-arrow">→</span>
+          </div>
+          <p class="pcard-desc">{p.data.summary}</p>
+          <div class="pcard-meta">
+            {p.data.year && <span>{p.data.year}<span class="pcard-dot">·</span></span>}
+            <span class="pcard-tag">{p.data.tag}</span>
+          </div>
+        </div>
+      </a>
+    );
+  })}
+</div>
+
+<style>
+  .pgrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 40px 28px;
+  }
+  .pcard {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    text-decoration: none;
+    color: inherit;
+  }
+  .pcard:hover :global(.pimg) {
+    border-color: var(--accent-line-strong);
+    filter: brightness(1.08);
+  }
+  .pcard:hover .pcard-title,
+  .pcard:hover .pcard-arrow { color: var(--accent-bright); }
+  .pcard-body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .pcard-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .pcard-title {
+    font-family: "Montserrat", sans-serif;
+    font-size: 19px;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.25;
+    color: var(--fg-strong);
+    margin: 0;
+    transition: color .12s;
+  }
+  .pcard-arrow {
+    color: var(--fg-faint);
+    font-size: 14px;
+    flex-shrink: 0;
+    transition: color .12s;
+  }
+  .pcard-desc {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--fg-dim);
+    margin: 0;
+    text-wrap: pretty;
+  }
+  .pcard-meta {
+    margin-top: 4px;
+    font-family: "0xProto Nerd Font Mono", "0xProto", monospace;
+    font-size: 11px;
+    color: var(--fg-faint);
+  }
+  .pcard-dot { color: var(--fg-ghost); margin: 0 8px; }
+  .pcard-tag { color: var(--accent-dim); }
+  @media (max-width: 640px) {
+    .pgrid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+</style>

@@ -1,0 +1,44 @@
+---
+interface Props {
+  src?: string;
+  alt: string;
+  label: string;
+  ratio?: string;
+}
+
+const { src, alt, label, ratio = '16 / 10' } = Astro.props;
+---
+
+{src ? (
+  <img class="pimg" src={src} alt={alt} loading="lazy" style={`aspect-ratio: ${ratio}`} />
+) : (
+  <div class="pimg pimg-empty" role="img" aria-label={alt} style={`aspect-ratio: ${ratio}`}>
+    <span class="pimg-label">[ {label} ]</span>
+  </div>
+)}
+
+<style>
+  .pimg {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    border: 1px solid var(--accent-line);
+    border-radius: 6px;
+    background: var(--surface);
+    transition: border-color .12s, filter .12s;
+  }
+  .pimg-empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+      radial-gradient(circle at 85% 15%, var(--wash-1) 0%, transparent 55%),
+      radial-gradient(var(--accent-line-strong) 1px, transparent 1px) 0 0 / 14px 14px,
+      var(--surface);
+  }
+  .pimg-label {
+    font-family: "0xProto Nerd Font Mono", "0xProto", monospace;
+    font-size: 11px;
+    color: var(--fg-faint);
+  }
+</style>

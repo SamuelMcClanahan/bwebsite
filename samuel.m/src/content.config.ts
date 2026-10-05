@@ -18,8 +18,12 @@ const projects = defineCollection({
     name: z.string(),
     tag: z.string(),
     status: z.enum(['active', 'shipped', 'v1', 'v2']),
-    year: z.string(),
+    year: z.string().optional(),
     summary: z.string(),
+    order: z.number().optional(),
+    image: z.string().optional(),
+    role: z.string().optional(),
+    link: z.string().url().optional(),
   }),
 });
 

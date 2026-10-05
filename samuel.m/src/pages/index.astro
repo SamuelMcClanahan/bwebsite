@@ -1,57 +1,51 @@
 ---
 import Shell from '../layouts/Shell.astro';
+import ProjectGrid from '../components/astro/ProjectGrid.astro';
 import { getCollection } from 'astro:content';
 
-const PINNED = ['currybot-cadathon', 'defcon-livectf-2026'];
-const allWork = await getCollection('work');
-const pinned = PINNED.map((slug) =>
-  allWork.find((p) => p.id.replace(/\.md$/, '') === slug)
-).filter(Boolean);
+const projects = await getCollection('projects');
 ---
 
 <Shell title="samuel.m" breadcrumb="~/" page="home">
   <div class="home-wrapper">
     <section class="hero">
       <div class="mark-row">
-        <span class="mark">slm</span>
+        <span class="mark">vk</span>
         <div class="mark-meta">
-          <span class="mark-name">Samuel L. McClanahan</span>
-          <span class="mark-loc">San Francisco, CA</span>
+          <span class="mark-name">Vaughn Khouri</span>
+          <span class="mark-loc">Cambridge, MA</span>
         </div>
       </div>
       <h1 class="h1"><span class="gradient">hello!</span></h1>
       <div class="body-block">
         <span class="body-prompt">›</span>
         <p class="body-text">
-          I'm a high school junior in San Francisco passionate about AI, cybersecurity, robotics, and hardware. Currently I'm working on making a scalable and low cost plane and drone detection system.<br><br>
-          Want to talk about anything? Reach out at porkbuns1964[at]gmail[dot]com
+          I study Mechanical Engineering (Controls, Instrumentation & Robotics) at MIT. Outside of classes, research, and MIT Motorsports, I build things.<br><br>
+          Below are photos and writeups of my favorite projects. Click one for the full story.
         </p>
+      </div>
+      <div class="hero-links">
+        <a href="https://www.vkhouri.dev/vmkresume.pdf" target="_blank" rel="noopener">resume ↗</a>
+        <a href="https://www.linkedin.com/in/vaughn-khouri-aa5526233/" target="_blank" rel="noopener">linkedin ↗</a>
       </div>
     </section>
 
     <section class="posts">
       <div class="posts-head">
-        <span class="posts-cmd">$ ls -t ~/work | head -2</span>
-        <a href="/work" class="posts-all">view all ■</a>
+        <span class="posts-cmd">$ ls ~/projects</span>
+        <span class="posts-count">{projects.length} projects</span>
       </div>
-      <div class="post-list">
-        {pinned.map((p) => (
-          <a href={`/work/${p.id.replace(/\.md$/, '')}/`} class="post-row">
-            <span class="post-date">{p.data.date.toISOString().split('T')[0]}</span>
-            <span class="post-title">{p.data.title}</span>
-          </a>
-        ))}
-      </div>
+      <ProjectGrid projects={projects} />
     </section>
   </div>
 
   <style is:global>
     .home-wrapper {
-      max-width: 640px;
+      max-width: 920px;
       margin: 0 auto;
       padding: 48px 20px 40px;
     }
-    .hero { margin-bottom: 48px; }
+    .hero { margin-bottom: 56px; max-width: 640px; }
     .mark-row {
       display: flex;
       align-items: center;
@@ -112,6 +106,20 @@ const pinned = PINNED.map((slug) =>
       margin: 0;
       text-wrap: pretty;
     }
+    .hero-links {
+      display: flex;
+      gap: 18px;
+      margin-top: 20px;
+      padding-left: 22px;
+      font-family: "0xProto Nerd Font Mono", "0xProto", monospace;
+      font-size: 12px;
+    }
+    .hero-links a {
+      color: var(--accent-dim);
+      text-decoration: none;
+      transition: color .12s;
+    }
+    .hero-links a:hover { color: var(--accent-bright); }
     .posts { margin-bottom: 24px; }
     .posts:last-child { margin-bottom: 0; }
     .posts-head {
@@ -127,55 +135,14 @@ const pinned = PINNED.map((slug) =>
       font-size: 12px;
       color: var(--fg-mid);
     }
-    .posts-all {
-      background: transparent;
-      border: none;
-      cursor: pointer;
+    .posts-count {
       font-family: "0xProto Nerd Font Mono", "0xProto", monospace;
-      font-size: 11px;
-      color: var(--accent-dim);
-      text-decoration: none;
-      transition: color .12s;
-    }
-    .posts-all:hover { color: var(--accent-bright); }
-    .post-list { display: flex; flex-direction: column; }
-    .post-row {
-      display: grid;
-      grid-template-columns: 90px 1fr;
-      gap: 16px;
-      padding: 12px 0;
-      align-items: baseline;
-      background: transparent;
-      border: none;
-      border-bottom: 1px solid var(--accent-line);
-      cursor: pointer;
-      text-align: left;
-      width: 100%;
-      text-decoration: none;
-      transition: background .12s;
-    }
-    .post-row:hover .post-title { color: var(--accent-bright); }
-    .post-date {
       font-size: 11px;
       color: var(--fg-faint);
-      font-family: "0xProto Nerd Font Mono", "0xProto", monospace;
-    }
-    .post-title {
-      font-size: 15px;
-      color: var(--fg-strong);
-      letter-spacing: -0.005em;
-      font-family: "Avenir Next", Avenir, "Montserrat", sans-serif;
-    }
-    .post-tags { display: flex; gap: 8px; }
-    .tag {
-      font-size: 10px;
-      color: var(--accent-dim);
-      font-family: "0xProto Nerd Font Mono", "0xProto", monospace;
     }
     @media (max-width: 640px) {
       .home-wrapper { padding: 32px 16px 24px; }
       .h1 { font-size: 42px; }
-      .post-row { grid-template-columns: 70px 1fr; gap: 10px; padding: 10px 0; }
     }
   </style>
 </Shell>
