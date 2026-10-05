@@ -17,7 +17,7 @@ const projects = defineCollection({
   schema: z.object({
     name: z.string(),
     tag: z.string(),
-    status: z.enum(['active', 'shipped', 'v1', 'v2']),
+    status: z.enum(['active', 'shipped', 'v1', 'v2']).optional(),
     year: z.string().optional(),
     summary: z.string(),
     order: z.number().optional(),

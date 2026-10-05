@@ -1,21 +1,11 @@
 ---
 name: "FormCakes"
-tag: "automation · molding · hackathon"
-status: shipped
+tag: "automation · hackathon"
 year: "2026"
-order: 5
-summary: "An automated machine that injection molds pancakes. Built for the Formlabs Hackathon 2026."
+order: 6
+image: "https://www.vkhouri.dev/_astro/formcakes.B0OwKDDJ_1S0QiS.webp"
+link: "https://www.vkhouri.dev/formcakes"
+summary: "Automated pancake injection molding machine, built for FormLabs Hackathon 2026."
 ---
 
-> Placeholder page. Swap in the real writeup and photos.
-
-A hackathon build that makes pancakes with injection molding, the same process factories use for plastic parts.
-
-## Highlights
-
-- Automated pancake injection molding
-- Built for the Formlabs Hackathon 2026
-
-## Writeup
-
-The full build log and photos go here.
+> Placeholder page. The full writeup is at [vkhouri.dev/formcakes](https://www.vkhouri.dev/formcakes).

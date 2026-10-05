@@ -15,16 +15,16 @@ const sorted = [...projects].sort((a, b) => (a.data.order ?? 99) - (b.data.order
     const id = p.id.replace(/\.md$/, '');
     return (
       <a href={`/projects/${id}/`} class="pcard">
-        <ProjectImage src={p.data.image} alt={p.data.name} label={`${id}.jpg`} />
+        <ProjectImage src={p.data.image} alt={p.data.name} label={`${id}.jpg`} ratio="3 / 2" />
         <div class="pcard-body">
-          <div class="pcard-head">
-            <h3 class="pcard-title">{p.data.name}</h3>
-            <span class="pcard-arrow">→</span>
-          </div>
+          <h3 class="pcard-title">{p.data.name}</h3>
           <p class="pcard-desc">{p.data.summary}</p>
           <div class="pcard-meta">
             {p.data.year && <span>{p.data.year}<span class="pcard-dot">·</span></span>}
             <span class="pcard-tag">{p.data.tag}</span>
+          </div>
+          <div class="pcard-foot">
+            <span class="pcard-open">read more →</span>
           </div>
         </div>
       </a>
@@ -35,36 +35,38 @@ const sorted = [...projects].sort((a, b) => (a.data.order ?? 99) - (b.data.order
 <style>
   .pgrid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 40px 28px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
   }
   .pcard {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    border: 1px solid var(--accent-line);
+    border-radius: 6px;
+    overflow: hidden;
     text-decoration: none;
     color: inherit;
+    transition: border-color .12s;
   }
-  .pcard:hover :global(.pimg) {
-    border-color: var(--accent-line-strong);
-    filter: brightness(1.08);
+  .pcard :global(.pimg) {
+    border: none;
+    border-bottom: 1px solid var(--accent-line);
+    border-radius: 0;
   }
+  .pcard:hover { border-color: var(--accent-line-strong); }
+  .pcard:hover :global(.pimg) { filter: brightness(1.08); }
   .pcard:hover .pcard-title,
-  .pcard:hover .pcard-arrow { color: var(--accent-bright); }
+  .pcard:hover .pcard-open { color: var(--accent-bright); }
   .pcard-body {
     display: flex;
     flex-direction: column;
-    gap: 6px;
-  }
-  .pcard-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 12px;
+    gap: 8px;
+    flex: 1;
+    padding: 16px 18px 14px;
   }
   .pcard-title {
     font-family: "Montserrat", sans-serif;
-    font-size: 19px;
+    font-size: 18px;
     font-weight: 600;
     letter-spacing: -0.015em;
     line-height: 1.25;
@@ -72,31 +74,35 @@ const sorted = [...projects].sort((a, b) => (a.data.order ?? 99) - (b.data.order
     margin: 0;
     transition: color .12s;
   }
-  .pcard-arrow {
-    color: var(--fg-faint);
-    font-size: 14px;
-    flex-shrink: 0;
-    transition: color .12s;
-  }
   .pcard-desc {
-    font-size: 14px;
+    font-size: 13.5px;
     line-height: 1.55;
     color: var(--fg-dim);
     margin: 0;
     text-wrap: pretty;
   }
   .pcard-meta {
-    margin-top: 4px;
     font-family: "0xProto Nerd Font Mono", "0xProto", monospace;
     font-size: 11px;
     color: var(--fg-faint);
   }
   .pcard-dot { color: var(--fg-ghost); margin: 0 8px; }
   .pcard-tag { color: var(--accent-dim); }
-  @media (max-width: 640px) {
-    .pgrid {
-      grid-template-columns: 1fr;
-      gap: 32px;
-    }
+  .pcard-foot {
+    margin-top: auto;
+    padding-top: 10px;
+    border-top: 1px dashed var(--accent-line);
+    font-family: "0xProto Nerd Font Mono", "0xProto", monospace;
+    font-size: 11px;
+  }
+  .pcard-open {
+    color: var(--fg-mid);
+    transition: color .12s;
+  }
+  @media (max-width: 900px) {
+    .pgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 600px) {
+    .pgrid { grid-template-columns: 1fr; }
   }
 </style>

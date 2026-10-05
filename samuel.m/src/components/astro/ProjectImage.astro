@@ -7,12 +7,14 @@ interface Props {
 }
 
 const { src, alt, label, ratio = '16 / 10' } = Astro.props;
+const imgStyle = ratio === 'auto' ? undefined : `aspect-ratio: ${ratio}`;
+const boxStyle = `aspect-ratio: ${ratio === 'auto' ? '16 / 10' : ratio}`;
 ---
 
 {src ? (
-  <img class="pimg" src={src} alt={alt} loading="lazy" style={`aspect-ratio: ${ratio}`} />
+  <img class="pimg" src={src} alt={alt} loading="lazy" decoding="async" style={imgStyle} />
 ) : (
-  <div class="pimg pimg-empty" role="img" aria-label={alt} style={`aspect-ratio: ${ratio}`}>
+  <div class="pimg pimg-empty" role="img" aria-label={alt} style={boxStyle}>
     <span class="pimg-label">[ {label} ]</span>
   </div>
 )}
