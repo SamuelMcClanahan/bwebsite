@@ -1,5 +1,6 @@
 ---
 import Shell from '../layouts/Shell.astro';
+import Stack from '../components/astro/Stack.astro';
 import { getCollection } from 'astro:content';
 
 const PINNED = ['currybot-cadathon', 'defcon-livectf-2026'];
@@ -43,6 +44,8 @@ const pinned = PINNED.map((slug) =>
         ))}
       </div>
     </section>
+
+    <Stack />
   </div>
 
   <style is:global>
